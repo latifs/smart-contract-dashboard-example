@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { ethers } from 'ethers';
+
+import Container from 'react-bootstrap/Container';
+import NavbarCMP from './components/NavbarCMP';
+import TransactionsTable from './components/TransactionsTable';
+import ContractAddresses from './components/ContractAddresses';
+import Greetings from './components/Greetings';
+import Tokens from './components/Tokens';
+import PageHeader from './components/PageHeader';
+
+// fixes ethereum not found on global
+declare global {
+  interface Window {
+    ethereum: ethers.providers.ExternalProvider;
+  }
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavbarCMP />
+      <Container>
+        <PageHeader />
+        <ContractAddresses />
+        <Greetings />
+        <Tokens />
+        <TransactionsTable />
+      </Container>
     </div>
   );
 }
